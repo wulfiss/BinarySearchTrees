@@ -1,4 +1,4 @@
-const Node = (data = d, left = null, right = null) => {
+const Node = (data = data, left = null, right = null) => {
   return {
     data,
     left,
