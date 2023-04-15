@@ -14,33 +14,21 @@ const Tree = (...arr) => {
   };
 
   const buildBSTB = (arrN) => {
-    if (arrN.length <= 0) {
-      return null;
-    } else if (arrN.length == 1) {
-      return (root = Node(arrN[0]));
+    if (arrN.length < 2) {
+      return arrN[0];
     }
 
     let mid = Math.floor((arrN.length - 1) / 2);
-    let left = arrN.slice(0, mid);
-    let right = arrN.slice(mid + 1);
+    let left = arrN.slice(0, mid) || null;
+    let right = arrN.slice(mid + 1) || null;
 
-    if (left.length >= 1) {
-      root = Node(arr[mid], left, right);
-      console.log(root);
-      buildBSTB(left);
-    }
-    if (right.length >= 1) {
-      root = Node(arr[mid], left, right);
-      console.log(root);
-      buildBSTB(right);
-    }
-    return root;
+    return (root = Node(arrN[mid], buildBSTB(left), buildBSTB(right)));
   };
 
   const buildTree = () => {
     sortTree(arr);
     deleteRepeatChars(arr);
-    buildBSTB(arr);
+    return buildBSTB(arr);
   };
 
   const getArr = () => arr;
