@@ -36,21 +36,39 @@ const Tree = (...arr) => {
   const insert = (key, node = root) => {
     if (node === null) {
       return Node(key);
-    }
+    } else if (node.data === key) {
+      return node;
+    } else {
+      if (node.data > key) {
+        node.left = insert(key, node.left);
+      }
 
-    if (node.data === key) {
-      return;
-    }
+      if (node.data < key) {
+        node.right = insert(key, node.right);
+      }
 
-    if (node.data > key) {
-      node.left = insert(key, node.left);
+      return node;
     }
+  };
 
-    if (node.data < key) {
-      node.right = insert(key, node.right);
+  const Delete = (value, node = root) => {
+    if (node === null) {
+      return false;
+    } else {
+      if (node.data === value && node.left === null && node.right === null) {
+        node = null;
+      }
+
+      if (node !== null && node.data > value) {
+        node = Delete(value, node.left);
+      }
+
+      if (node !== null && node.data < value) {
+        node = Delete(value, node.right);
+      }
+
+      return node;
     }
-
-    return node;
   };
 
   const getArr = () => arr;
@@ -60,6 +78,7 @@ const Tree = (...arr) => {
   return {
     buildTree,
     insert,
+    Delete,
     getRoot,
     getArr,
     show,
