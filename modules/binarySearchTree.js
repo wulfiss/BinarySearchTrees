@@ -52,6 +52,16 @@ const Tree = (...arr) => {
   };
 
   const Delete = (value, node = root) => {
+    /*     const deleteRecu = (node) => {
+      if (!node.left) {
+        node = null;
+        return node;
+      }
+      if (node.left) {
+        return deleteRecu(node.left);
+      }
+    }; */
+
     if (node === null) {
       return node;
     }
@@ -69,6 +79,17 @@ const Tree = (...arr) => {
       if (node.right === null && node.left !== null) {
         node = node.left;
         return node;
+      }
+
+      if (node.right && node.left) {
+        let tmp = node.right;
+        let prev = null;
+        while (tmp !== null) {
+          prev = tmp;
+          tmp = tmp.left;
+        }
+        Delete(prev.data);
+        node.data = prev.data;
       }
     }
 
