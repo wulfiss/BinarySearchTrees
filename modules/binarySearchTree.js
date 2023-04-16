@@ -60,6 +60,16 @@ const Tree = (...arr) => {
       if (node.left === null && node.right === null) {
         return null;
       }
+
+      if (node.left === null && node.right !== null) {
+        node = node.right;
+        return node;
+      }
+
+      if (node.right === null && node.left !== null) {
+        node = node.left;
+        return node;
+      }
     }
 
     if (node.data > value) {
