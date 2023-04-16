@@ -53,22 +53,24 @@ const Tree = (...arr) => {
 
   const Delete = (value, node = root) => {
     if (node === null) {
-      return false;
-    } else {
-      if (node.data === value && node.left === null && node.right === null) {
-        node = null;
-      }
-
-      if (node !== null && node.data > value) {
-        node = Delete(value, node.left);
-      }
-
-      if (node !== null && node.data < value) {
-        node = Delete(value, node.right);
-      }
-
       return node;
     }
+
+    if (node.data === value) {
+      if (node.left === null && node.right === null) {
+        return null;
+      }
+    }
+
+    if (node.data > value) {
+      node.left = Delete(value, node.left);
+    }
+
+    if (node.data < value) {
+      node.right = Delete(value, node.right);
+    }
+
+    return node;
   };
 
   const getArr = () => arr;
