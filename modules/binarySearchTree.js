@@ -33,13 +33,36 @@ const Tree = (...arr) => {
     prettyPrint(root);
   };
 
+  const insert = (key, node = root) => {
+    if (node === null) {
+      return Node(key);
+    }
+
+    if (node.data === key) {
+      return;
+    }
+
+    if (node.data > key) {
+      node.left = insert(key, node.left);
+    }
+
+    if (node.data < key) {
+      node.right = insert(key, node.right);
+    }
+
+    return node;
+  };
+
   const getArr = () => arr;
   const getRoot = () => root;
+  const show = () => prettyPrint(root);
 
   return {
-    getArr,
     buildTree,
+    insert,
     getRoot,
+    getArr,
+    show,
   };
 };
 
