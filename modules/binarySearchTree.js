@@ -112,6 +112,8 @@ const Tree = (...arr) => {
     return tmp;
   };
 
+  //From root head goes down visiting every child on the level before going to the next level,
+  //breadth-first top to bottom.
   const levelOrder = (callBack, node = root) => {
     let tmpArr = [];
     let arr = [];
@@ -138,6 +140,9 @@ const Tree = (...arr) => {
     }
     return arr;
   };
+  //Visit every branch to the end before going to the next branch.
+  //Depth-First - INORDER <left><root><right>
+  const inOrder = (callBack, node = root) => {};
 
   const getArr = () => arr;
   const getRoot = () => root;
@@ -149,6 +154,7 @@ const Tree = (...arr) => {
     Delete,
     find,
     levelOrder,
+    inOrder,
     getRoot,
     getArr,
     show,
