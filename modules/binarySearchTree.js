@@ -52,16 +52,6 @@ const Tree = (...arr) => {
   };
 
   const Delete = (value, node = root) => {
-    /*     const deleteRecu = (node) => {
-      if (!node.left) {
-        node = null;
-        return node;
-      }
-      if (node.left) {
-        return deleteRecu(node.left);
-      }
-    }; */
-
     if (node === null) {
       return node;
     }
@@ -104,6 +94,24 @@ const Tree = (...arr) => {
     return node;
   };
 
+  const find = (value, node = root) => {
+    let tmp = null;
+    if (node.data === value) {
+      return node;
+    } else if (node === null) {
+      return null;
+    } else {
+      if (node.data < value) {
+        tmp = find(value, node.right);
+      }
+
+      if (node.data > value) {
+        tmp = find(value, node.left);
+      }
+    }
+    return tmp;
+  };
+
   const getArr = () => arr;
   const getRoot = () => root;
   const show = () => prettyPrint(root);
@@ -112,6 +120,7 @@ const Tree = (...arr) => {
     buildTree,
     insert,
     Delete,
+    find,
     getRoot,
     getArr,
     show,
