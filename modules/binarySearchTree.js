@@ -112,6 +112,33 @@ const Tree = (...arr) => {
     return tmp;
   };
 
+  const levelOrder = (callBack, node = root) => {
+    let tmpArr = [];
+    let arr = [];
+    let currNode = null;
+
+    tmpArr.push(node);
+
+    while (tmpArr.length > 0) {
+      currNode = tmpArr.shift();
+
+      if (callBack) {
+        arr.push(callBack(currNode.data));
+      } else {
+        arr.push(currNode.data);
+      }
+
+      if (currNode.left) {
+        tmpArr.push(currNode.left);
+      }
+
+      if (currNode.right) {
+        tmpArr.push(currNode.right);
+      }
+    }
+    return arr;
+  };
+
   const getArr = () => arr;
   const getRoot = () => root;
   const show = () => prettyPrint(root);
@@ -121,6 +148,7 @@ const Tree = (...arr) => {
     insert,
     Delete,
     find,
+    levelOrder,
     getRoot,
     getArr,
     show,
