@@ -163,6 +163,50 @@ const Tree = (...arr) => {
 
     return arr;
   };
+  //Visit every node in preOrder
+  //Depth-First - PREORDER <root><left><right>
+  const preOrder = (callBack, node = root, arr = []) => {
+    if (node === null) {
+      return;
+    }
+
+    if (callBack) {
+      arr.push(callBack(node.data));
+    } else {
+      arr.push(node.data);
+    }
+
+    if (node.left) {
+      preOrder(callBack, node.left, arr);
+    }
+
+    if (node.right) {
+      preOrder(callBack, node.right, arr);
+    }
+    return arr;
+  };
+  //Depth-First - postORDER <left><right><root>
+  const postOrder = (callBack, node = root, arr = []) => {
+    if (node === null) {
+      return;
+    }
+
+    if (node.left) {
+      postOrder(callBack, node.left, arr);
+    }
+
+    if (node.right) {
+      postOrder(callBack, node.right, arr);
+    }
+
+    if (callBack) {
+      arr.push(callBack(node.data));
+    } else {
+      arr.push(node.data);
+    }
+
+    return arr;
+  };
 
   const getArr = () => arr;
   const getRoot = () => root;
@@ -175,6 +219,8 @@ const Tree = (...arr) => {
     find,
     levelOrder,
     inOrder,
+    preOrder,
+    postOrder,
     getRoot,
     getArr,
     show,
