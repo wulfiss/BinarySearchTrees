@@ -226,6 +226,26 @@ const Tree = (...arr) => {
     }
   };
 
+  const depth = (value, node = root, dpth = 0) => {
+    if (node === null) {
+      return null;
+    }
+
+    if (node.data < value) {
+      dpth = depth(value, node.right, dpth) + 1;
+    }
+
+    if (node.data > value) {
+      dpth = depth(value, node.left, dpth) + 1;
+    }
+    /* 
+    if (node.data === value) {
+      console.log(dpth);
+      return dpth;
+    } */
+    return dpth;
+  };
+
   const getArr = () => arr;
   const getRoot = () => root;
   const show = () => prettyPrint(root);
@@ -240,6 +260,7 @@ const Tree = (...arr) => {
     preOrder,
     postOrder,
     height,
+    depth,
     getRoot,
     getArr,
     show,
