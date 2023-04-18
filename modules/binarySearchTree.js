@@ -238,14 +238,29 @@ const Tree = (...arr) => {
     if (node.data > value) {
       dpth = depth(value, node.left, dpth) + 1;
     }
-    /* 
-    if (node.data === value) {
-      console.log(dpth);
-      return dpth;
-    } */
+
     return dpth;
   };
 
+  const isBalanced = (node = root, left = 0, right = 0) => {
+    if (node === null) {
+      return 0;
+    }
+    if (node.left) {
+      left = height(node.left, left) + 1;
+    }
+    if (node.right) {
+      right = height(node.right, right) + 1;
+    }
+
+    let diff = left - right;
+
+    if (diff === 0 || diff === -1 || diff === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const getArr = () => arr;
   const getRoot = () => root;
   const show = () => prettyPrint(root);
@@ -261,6 +276,7 @@ const Tree = (...arr) => {
     postOrder,
     height,
     depth,
+    isBalanced,
     getRoot,
     getArr,
     show,
