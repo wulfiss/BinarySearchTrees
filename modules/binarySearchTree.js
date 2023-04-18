@@ -142,7 +142,27 @@ const Tree = (...arr) => {
   };
   //Visit every branch to the end before going to the next branch.
   //Depth-First - INORDER <left><root><right>
-  const inOrder = (callBack, node = root) => {};
+  const inOrder = (callBack, node = root, arr = []) => {
+    if (node === null) {
+      return;
+    }
+
+    if (node.left) {
+      inOrder(callBack, node.left, arr);
+    }
+
+    if (callBack) {
+      arr.push(callBack(node.data));
+    } else {
+      arr.push(node.data);
+    }
+
+    if (node.right) {
+      inOrder(callBack, node.right, arr);
+    }
+
+    return arr;
+  };
 
   const getArr = () => arr;
   const getRoot = () => root;
