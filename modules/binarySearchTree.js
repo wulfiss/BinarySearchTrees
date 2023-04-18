@@ -1,7 +1,7 @@
 import { Node } from './node.js';
 import { prettyPrint } from './prettyPrint.js';
 
-const Tree = (...arr) => {
+const Tree = (arr) => {
   let root = null;
 
   const sortTree = (unArr) => {
