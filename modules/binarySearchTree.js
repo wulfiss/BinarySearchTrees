@@ -208,6 +208,24 @@ const Tree = (...arr) => {
     return arr;
   };
 
+  const height = (node = root, left = 0, right = 0) => {
+    if (node === null) {
+      return 0;
+    }
+    if (node.left) {
+      left = height(node.left, left) + 1;
+    }
+    if (node.right) {
+      right = height(node.right, right) + 1;
+    }
+
+    if (left >= right) {
+      return left;
+    } else {
+      return right;
+    }
+  };
+
   const getArr = () => arr;
   const getRoot = () => root;
   const show = () => prettyPrint(root);
@@ -221,6 +239,7 @@ const Tree = (...arr) => {
     inOrder,
     preOrder,
     postOrder,
+    height,
     getRoot,
     getArr,
     show,
