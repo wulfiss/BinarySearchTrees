@@ -261,6 +261,14 @@ const Tree = (...arr) => {
       return false;
     }
   };
+
+  const reBalance = () => {
+    const newArr = inOrder();
+    sortTree(newArr);
+    deleteRepeatChars(newArr);
+    buildBSTB(newArr);
+    prettyPrint(root);
+  };
   const getArr = () => arr;
   const getRoot = () => root;
   const show = () => prettyPrint(root);
@@ -279,6 +287,7 @@ const Tree = (...arr) => {
     isBalanced,
     getRoot,
     getArr,
+    reBalance,
     show,
   };
 };
